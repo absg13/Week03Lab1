@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java.servlets;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 738377
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
-public class LoginServlet extends HttpServlet {
-    
+@WebServlet(name = "MainPageServlet", urlPatterns = {"/MainPage"})
+public class MainPageServlet extends HttpServlet {
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -33,8 +33,6 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").
-                    forward(request, response);
     }
 
     /**
@@ -49,28 +47,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        if (username == null || password == null) {
-            
-            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").
-                    forward(request, response);
-            
-            return;
-        } 
-        
-        else if (username.isEmpty() || password.isEmpty()) {
-            request.setAttribute("message", "Both values are required!");
-           
-            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").
-                    forward(request, response);
-            
-            return;
-        }
-        
-        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").
-                    forward(request, response);
     }
 // </editor-fold>
 
