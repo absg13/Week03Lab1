@@ -20,6 +20,8 @@
                     <input type="submit" value="Login">
                 </form>
             </div>
+                    
                 ${message}
+                
     </body>           
 </html>
