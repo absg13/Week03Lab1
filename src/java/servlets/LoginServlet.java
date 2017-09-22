@@ -8,18 +8,16 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import business.service.*;
 /**
  *
  * @author 738377
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -69,6 +67,18 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         
+        UserService user = new UserService();
+        
+        if (user.login(username, password) == true) {
+            request.setAttribute("username", username);
+            getServletContext().getRequestDispatcher("/WEB-INF/mainPage.jsp").
+                    forward(request, response);
+        
+            return;
+        }
+        
+        
+        request.setAttribute("message", "Invalid username or password!");
         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").
                     forward(request, response);
     }

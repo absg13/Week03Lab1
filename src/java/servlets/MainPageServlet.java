@@ -8,7 +8,6 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 738377
  */
-@WebServlet(name = "MainPageServlet", urlPatterns = {"/MainPage"})
 public class MainPageServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -33,6 +31,13 @@ public class MainPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String logout = request.getParameter("logout");
+        
+        if (logout.equals("LogOut")) {
+            request.setAttribute("message", "Logged out!");
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").
+                    forward(request, response);
+        }
     }
 
     /**
@@ -48,6 +53,15 @@ public class MainPageServlet extends HttpServlet {
             throws ServletException, IOException {
         
     }
-// </editor-fold>
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }
