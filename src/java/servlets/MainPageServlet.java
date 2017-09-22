@@ -33,7 +33,7 @@ public class MainPageServlet extends HttpServlet {
         
         String logout = request.getParameter("logout");
         
-        if (logout.equals("LogOut")) {
+        if (logout != null) {
             request.setAttribute("message", "Logged out!");
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").
                     forward(request, response);
