@@ -13,11 +13,23 @@ public class UserService {
     
     public boolean login(String username, String password) {
         
-        if (username.equals("adam") || username.equals("betty") 
-                && password.equals("password")) {
-            return true;
-        } 
+        boolean valid = false;
         
-        return false;
+            if (username.equals("adam") || username.equals("betty")) {
+                
+                if (password.equals("password")) {
+                    valid = true;
+                }
+                
+                else {
+                    valid = false;
+                }
+            }
+            
+            else {
+                valid = false;
+            }
+            
+            return valid;
     }
 }
