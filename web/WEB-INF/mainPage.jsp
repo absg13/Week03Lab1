@@ -5,19 +5,18 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Main Page</title>
-    </head>
-    <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <c:import url="/includes/header.html" />
+    
         <h1>Main Page</h1>
         <div>
             
-            Hello, ${username} <br><br>
+            <c:if test="${user != null}">
+                Hello, ${user.username} <br><br>
+            </c:if>
+            
+            
             <a href="mainPage?logout=true">Log out</a>
         
         </div>
-    </body>
-</html>
+   <c:import url="/includes/footer.jsp" />

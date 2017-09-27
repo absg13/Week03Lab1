@@ -70,7 +70,12 @@ public class LoginServlet extends HttpServlet {
         UserService user = new UserService();
         
         if (user.login(username, password) == true) {
-            request.setAttribute("username", username);
+            
+            User person = new User();
+            person.setUsername(username);
+            person.setPassword(password);
+            
+            request.setAttribute("user", person);
             getServletContext().getRequestDispatcher("/WEB-INF/mainPage.jsp").
                     forward(request, response);
         
